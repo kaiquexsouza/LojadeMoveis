@@ -2,6 +2,8 @@ package repositorio;
 
 import conexao.Conexao;
 import entidades.Fornecedor;
+import entidades.Funcionario;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +16,6 @@ public class FuncionarioRepository {
                 "'" + funcionario.getUsuario() + "', " +
                 "'" + funcionario.getSenha() + "'" +
                 ")";
-
         return Conexao.executarSql(sql);
     }
 
@@ -30,8 +31,5 @@ public class FuncionarioRepository {
 
         conn.close();
         return id;
-    }
-
-    return null;
     }
 }

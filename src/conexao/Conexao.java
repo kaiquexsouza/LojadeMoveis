@@ -3,7 +3,7 @@ package conexao;
 import java.sql.*;
 
 public class Conexao {
-    private static final String URL = "jdbc:sqlite:loja_moveis.db";
+    private static final String URL = "jdbc:sqlite:./database/loja_moveis.db";
 
     public static Connection conectar() throws SQLException {
         Connection con = DriverManager.getConnection(URL);
@@ -15,8 +15,8 @@ public class Conexao {
         Statement stmt = con.createStatement();
 
         String sqlMovel = """
-        CREATE TABLE IF NOT EXISTS movel (
-            id_movel              INTEGER PRIMARY KEY AUTOINCREMENT,
+        CREATE TABLE IF NOT EXISTS movel(
+            id_movel        INTEGER PRIMARY KEY AUTOINCREMENT,
             cor             TEXT    NOT NULL,
             descricao       TEXT    NOT NULL,
             material        TEXT    NOT NULL,
@@ -30,9 +30,10 @@ public class Conexao {
 
         String sqlArmario = """
         CREATE TABLE IF NOT EXISTS armario (
-            id_armario        INTEGER PRIMARY KEY AUTOINCREMENT,
+            id_armario      INTEGER PRIMARY KEY AUTOINCREMENT,
+            id_movel        INTEGER NOT NULL,
             numero_portas   INTEGER NOT NULL,
-            FOREIGN KEY (id_movel) REFERENCES movel(id) ON DELETE CASCADE
+            FOREIGN KEY (id_movel) REFERENCES movel(id_movel) ON DELETE CASCADE
         )
     """;
 
@@ -48,15 +49,17 @@ public class Conexao {
     """;
 
         String sqlFuncionario = """
-        CREATE TABLE IF NOT EXISTS funcionario (    
+        CREATE TABLE IF NOT EXISTS funcionario (
             id_funcionario    INTEGER PRIMARY KEY AUTOINCREMENT,
             usuario           TEXT    NOT NULL,
-            senha             TEXT    NOT NULL        
-        )        
+            senha             TEXT    NOT NULL
+        )
     """;
 
         stmt.executeUpdate(sqlMovel);
         stmt.executeUpdate(sqlArmario);
+        stmt.executeUpdate(sqlFornecedor);
+        stmt.executeUpdate(sqlFuncionario);
     }
 
     public static boolean executarSql(String sql) {
