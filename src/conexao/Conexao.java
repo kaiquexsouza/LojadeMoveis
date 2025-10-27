@@ -3,7 +3,7 @@ package conexao;
 import java.sql.*;
 
 public class Conexao {
-    private static final String URL = "jdbc:sqlite:./database/loja_moveis.db";
+    private static final String URL = "jdbc:sqlite:loja_moveis.db";
 
     public static Connection conectar() throws SQLException {
         Connection con = DriverManager.getConnection(URL);
@@ -11,76 +11,68 @@ public class Conexao {
         return con;
     }
 
-    public static void criarTabelas(Connection con) throws SQLException {
-        Statement stmt = con.createStatement();
-
+    private static void criarTabelas(Connection con) throws SQLException {
         String sqlMovel = """
-        CREATE TABLE IF NOT EXISTS movel(
-            id_movel        INTEGER PRIMARY KEY AUTOINCREMENT,
-            cor             TEXT    NOT NULL,
-            descricao       TEXT    NOT NULL,
-            material        TEXT    NOT NULL,
-            altura          REAL    NOT NULL,
-            largura         REAL    NOT NULL,
-            comprimento     REAL    NOT NULL,
-            preco           REAL    NOT NULL,
-            tipo            TEXT    CHECK (tipo IN ('RACK', 'CADEIRA', 'MESA'))
-        )
-    """;
+            CREATE TABLE IF NOT EXISTS movel (
+                id_movel      INTEGER PRIMARY KEY AUTOINCREMENT,
+                cor           TEXT NOT NULL,
+                descricao     TEXT NOT NULL,
+                material      TEXT NOT NULL,
+                altura        REAL NOT NULL,
+                largura       REAL NOT NULL,
+                comprimento   REAL NOT NULL,
+                preco         REAL NOT NULL,
+                tipo          TEXT DEFAULT 'RACK' CHECK (tipo IN ('RACK', 'CADEIRA', 'MESA'))
+            )
+        """;
 
         String sqlArmario = """
-        CREATE TABLE IF NOT EXISTS armario (
-            id_armario      INTEGER PRIMARY KEY AUTOINCREMENT,
-            id_movel        INTEGER NOT NULL,
-            numero_portas   INTEGER NOT NULL,
-            FOREIGN KEY (id_movel) REFERENCES movel(id_movel) ON DELETE CASCADE
-        )
-    """;
+            CREATE TABLE IF NOT EXISTS armario (
+                id_armario     INTEGER PRIMARY KEY AUTOINCREMENT,
+                id_movel       INTEGER NOT NULL,
+                numero_portas  INTEGER NOT NULL,
+                FOREIGN KEY (id_movel) REFERENCES movel(id_movel) ON DELETE CASCADE
+            )
+        """;
 
         String sqlFornecedor = """
-        CREATE TABLE IF NOT EXISTS fornecedor (
-            id_fornecedor     INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome              TEXT    NOT NULL,
-            cnpj              TEXT    NOT NULL,
-            telefone          TEXT    NOT NULL,
-            email             TEXT    NOT NULL,
-            endereco          TEXT    NOT NULL
-        )
-    """;
+            CREATE TABLE IF NOT EXISTS fornecedor (
+                id_fornecedor  INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome           TEXT NOT NULL,
+                cnpj           TEXT NOT NULL,
+                telefone       TEXT NOT NULL,
+                email          TEXT NOT NULL,
+                endereco       TEXT NOT NULL
+            )
+        """;
 
         String sqlFuncionario = """
-        CREATE TABLE IF NOT EXISTS funcionario (
-            id_funcionario    INTEGER PRIMARY KEY AUTOINCREMENT,
-            usuario           TEXT    NOT NULL,
-            senha             TEXT    NOT NULL
-        )
-    """;
+            CREATE TABLE IF NOT EXISTS funcionario (
+                id_funcionario INTEGER PRIMARY KEY AUTOINCREMENT,
+                usuario        TEXT NOT NULL,
+                senha          TEXT NOT NULL
+            )
+        """;
 
-        stmt.executeUpdate(sqlMovel);
-        stmt.executeUpdate(sqlArmario);
-        stmt.executeUpdate(sqlFornecedor);
-        stmt.executeUpdate(sqlFuncionario);
+        try (Statement stmt = con.createStatement()) {
+            stmt.executeUpdate(sqlMovel);
+            stmt.executeUpdate(sqlArmario);
+            stmt.executeUpdate(sqlFornecedor);
+            stmt.executeUpdate(sqlFuncionario);
+        }
     }
 
     public static boolean executarSql(String sql) {
-        try{
-            // Abre a conexão
-            Connection conn = conectar();
+        try (Connection conn = conectar();
+             Statement stmt = conn.createStatement()) {
 
-            // Cria um Statement simples
-            Statement stmt = conn.createStatement();
-
-            // Executa o comando
             stmt.executeUpdate(sql);
-
-            conn.close();
             return true;
 
         } catch (SQLException e) {
             System.out.println("Erro ao executar SQL: " + e.getMessage());
+            return false;
         }
-
-        return false;
     }
 
     public static ResultSet executarQuery(String sql, Connection conn) throws SQLException {

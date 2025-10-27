@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DdlMappings">
     <mapping uuid="5bec6383-a16a-46de-b8c7-5fe7747d0a58" name="identifier.sqlite Mapping">
-      <data-sources db="6261de5f-e03a-4ae0-b7bb-f9cb515310dc" ddl="07618b6b-618f-482b-ad21-fdd081879a39" />
+      <data-sources db="6261de5f-e03a-4ae0-b7bb-f9cb515310dc" ddl="db4069e2-b5dd-47e2-8514-3e8a7f235496" />
     </mapping>
   </component>
 </project>
