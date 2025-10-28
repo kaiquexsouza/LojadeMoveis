@@ -3,10 +3,10 @@ package conexao;
 import java.sql.*;
 
 public class Conexao {
-    private static final String URL = "jdbc:sqlite:loja_moveis.db";
+    private static final String pathURL = "jdbc:sqlite:loja_moveis.db";
 
     public static Connection conectar() throws SQLException {
-        Connection con = DriverManager.getConnection(URL);
+        Connection con = DriverManager.getConnection(pathURL);
         criarTabelas(con);
         return con;
     }
