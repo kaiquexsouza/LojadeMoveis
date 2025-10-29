@@ -15,6 +15,7 @@ public class Conexao {
         String sqlMovel = """
             CREATE TABLE IF NOT EXISTS movel (
                 id_movel      INTEGER PRIMARY KEY AUTOINCREMENT,
+                id_fornecedor INTEGER NOT NULL,
                 cor           TEXT NOT NULL,
                 descricao     TEXT NOT NULL,
                 material      TEXT NOT NULL,
@@ -22,7 +23,8 @@ public class Conexao {
                 largura       REAL NOT NULL,
                 comprimento   REAL NOT NULL,
                 preco         REAL NOT NULL,
-                tipo          TEXT DEFAULT 'RACK' CHECK (tipo IN ('RACK', 'CADEIRA', 'MESA'))
+                tipo          TEXT DEFAULT 'RACK' CHECK (tipo IN ('RACK', 'CADEIRA', 'MESA')),
+                FOREIGN KEY (id_fornecedor) REFERENCES fornecedor (id_fornecedor) ON DELETE CASCADE ON UPDATE CASCADE
             )
         """;
 
@@ -49,7 +51,7 @@ public class Conexao {
         String sqlFuncionario = """
             CREATE TABLE IF NOT EXISTS funcionario (
                 id_funcionario INTEGER PRIMARY KEY AUTOINCREMENT,
-                usuario        TEXT NOT NULL,
+                usuario        TEXT UNIQUE NOT NULL,
                 senha          TEXT NOT NULL
             )
         """;

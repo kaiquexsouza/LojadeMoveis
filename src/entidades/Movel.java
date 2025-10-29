@@ -12,10 +12,13 @@ public class Movel {
     private float comprimento;
     private float preco;
     private TipoMovel tipoMovel;
+    private Fornecedor fornecedor;
 
-    public Movel() {}
+    public Movel() {
 
-    public Movel(int id, String cor, String descricao, String material, float altura, float largura, float comprimento, float preco, TipoMovel tipoMovel) {
+    }
+
+    public Movel(int id, String cor, String descricao, String material, float altura, float largura, float comprimento, float preco, TipoMovel tipoMovel, Fornecedor fornecedor) {
         this.id = id;
         this.cor = cor;
         this.descricao = descricao;
@@ -25,6 +28,7 @@ public class Movel {
         this.comprimento = comprimento;
         this.preco = preco;
         this.tipoMovel = tipoMovel;
+        this.fornecedor = fornecedor;
     }
 
     public int getId() {
@@ -93,5 +97,13 @@ public class Movel {
 
     public void setTipoMovel(TipoMovel tipoMovel) {
         this.tipoMovel = tipoMovel;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 }
