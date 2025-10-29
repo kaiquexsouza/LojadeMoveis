@@ -1,7 +1,6 @@
 package repositorio;
 
 import conexao.Conexao;
-import entidades.Armario;
 import entidades.Fornecedor;
 import entidades.Movel;
 import entidades.enumeracao.TipoMovel;
@@ -14,10 +13,10 @@ import java.util.List;
 
 public class MovelRepository {
     public static boolean inserir(Movel movel) throws SQLException {
-        String sql = "INSERT INTO movel (cor, descricao, material, altura, largura, comprimento, preco, tipo, fornecedor) " +
+        String sql = "INSERT INTO movel (cor, descricao, material, altura, largura, comprimento, preco, tipo, id_fornecedor) " +
                 "VALUES ('" + movel.getCor() + "', '" + movel.getDescricao() + "', '" + movel.getMaterial() + "', " +
                 movel.getAltura() + ", " + movel.getLargura() + ", " + movel.getComprimento() + ", " +
-                movel.getPreco() + ", '" + movel.getTipoMovel().name() + "', '" + movel.getFornecedor() + "')";
+                movel.getPreco() + ", '" + movel.getTipoMovel().name() + "', " + movel.getFornecedor().getId_fornecedor() + ")";
 
         return Conexao.executarSql(sql);
     }
@@ -36,63 +35,25 @@ public class MovelRepository {
         return id;
     }
 
-    public static List<Movel> listarPorTipo(TipoMovel tipo) throws SQLException {
-        try {
-            String sql = """
-                SELECT id, cor, descricao, material, altura, largura, comprimento, preco, tipo
-                FROM movel
-                INNER JOIN fornecedor ON movel.id = fornecedor.id
-                WHERE tipo = '""" + tipo.name() + "'";
+    public static List<Movel> listar(TipoMovel tipo) throws SQLException {
+        List<Movel> moveis = new ArrayList<>();
+        String sql = """
+        SELECT m.id, m.cor, m.descricao, m.material, m.altura, m.largura, m.comprimento, m.preco, m.tipo,
+               f.id AS id_fornecedor, f.nome, f.cnpj, f.telefone, f.email, f.endereco
+        FROM movel m
+        INNER JOIN fornecedor f ON m.id_fornecedor = f.id_fornecedor
+    """;
 
-            Connection con = Conexao.conectar();
-            ResultSet rs = Conexao.executarQuery(sql, con);
-
-            List<Movel> moveis = new ArrayList<>();
-            while (rs.next()) {
-                Fornecedor fornecedor = new Fornecedor(
-                        rs.getInt("id"),
-                        rs.getString("nome"),
-                        rs.getString("cnpj"),
-                        rs.getString("telefone"),
-                        rs.getString("email"),
-                        rs.getString("endereco")
-                );
-
-                Movel movel = new Movel(
-                        rs.getInt("id"),
-                        rs.getString("cor"),
-                        rs.getString("descricao"),
-                        rs.getString("material"),
-                        rs.getFloat("altura"),
-                        rs.getFloat("largura"),
-                        rs.getFloat("comprimento"),
-                        rs.getFloat("preco"),
-                        TipoMovel.valueOf(rs.getString("tipo")),
-                        fornecedor
-                );
-                moveis.add(movel);
-            }
-
-            con.close();
-            return moveis;
-
-        } catch (Exception e) {
-            System.out.println("Erro ao listar móveis por tipo: " + e.getMessage());
+        if (tipo != null) {
+            sql += " WHERE m.tipo = '" + tipo.name() + "'";
         }
-        return null;
-    }
 
-    public static List<Movel> listar() {
-        try {
-            String sql = "SELECT id, cor, descricao, material, altura, largura, comprimento, preco, tipo, fornecedor FROM movel";
+        try (Connection con = Conexao.conectar();
+             ResultSet rs = Conexao.executarQuery(sql, con)) {
 
-            Connection con = Conexao.conectar();
-            ResultSet rs = Conexao.executarQuery(sql, con);
-
-            List<Movel> moveis = new ArrayList<>();
             while (rs.next()) {
                 Fornecedor fornecedor = new Fornecedor(
-                        rs.getInt("id"),
+                        rs.getInt("id_fornecedor"),
                         rs.getString("nome"),
                         rs.getString("cnpj"),
                         rs.getString("telefone"),
@@ -114,13 +75,11 @@ public class MovelRepository {
                 );
                 moveis.add(movel);
             }
-
-            con.close();
-            return moveis;
 
         } catch (Exception e) {
             System.out.println("Erro ao listar móveis: " + e.getMessage());
         }
-        return null;
+
+        return moveis;
     }
 }

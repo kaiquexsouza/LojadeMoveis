@@ -3,7 +3,7 @@ package entidades;
 import entidades.enumeracao.TipoMovel;
 
 public class Movel {
-    private int id;
+    private int id_movel;
     private String cor;
     private String descricao;
     private String material;
@@ -18,8 +18,8 @@ public class Movel {
 
     }
 
-    public Movel(int id, String cor, String descricao, String material, float altura, float largura, float comprimento, float preco, TipoMovel tipoMovel, Fornecedor fornecedor) {
-        this.id = id;
+    public Movel(int id_movel, String cor, String descricao, String material, float altura, float largura, float comprimento, float preco, TipoMovel tipoMovel, Fornecedor fornecedor) {
+        this.id_movel = id_movel;
         this.cor = cor;
         this.descricao = descricao;
         this.material = material;
@@ -31,8 +31,8 @@ public class Movel {
         this.fornecedor = fornecedor;
     }
 
-    public int getId() {
-        return id;
+    public int getId_movel() {
+        return id_movel;
     }
 
     public String getCor() {

@@ -1,7 +1,7 @@
 package entidades;
 
 public class Fornecedor {
-    private int id;
+    private int id_fornecedor;
     private String nome;
     private String cnpj;
     private String telefone;
@@ -12,8 +12,8 @@ public class Fornecedor {
 
     }
 
-    public Fornecedor(int id, String nome, String cnpj, String telefone, String email, String endereco) {
-        this.id = id;
+    public Fornecedor(int id_fornecedor, String nome, String cnpj, String telefone, String email, String endereco) {
+        this.id_fornecedor = id_fornecedor;
         this.nome = nome;
         this.cnpj = cnpj;
         this.telefone = telefone;
@@ -21,8 +21,8 @@ public class Fornecedor {
         this.endereco = endereco;
     }
 
-    public int getId() {
-        return id;
+    public int getId_fornecedor() {
+        return id_fornecedor;
     }
 
     public String getNome() {

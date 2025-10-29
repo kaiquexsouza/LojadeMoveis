@@ -1,7 +1,7 @@
 package entidades;
 
 public class Funcionario {
-    private int id;
+    private int id_funcionario;
     private String usuario;
     private String senha;
 
@@ -9,14 +9,14 @@ public class Funcionario {
 
     }
 
-    public Funcionario(int id, String usuario, String senha) {
-        this.id = id;
+    public Funcionario(int id_funcionario, String usuario, String senha) {
+        this.id_funcionario = id_funcionario;
         this.usuario = usuario;
         this.senha = senha;
     }
 
-    public int getId() {
-        return id;
+    public int getId_funcionario() {
+        return id_funcionario;
     }
 
     public String getUsuario() {

@@ -11,7 +11,18 @@ public class Conexao {
         return con;
     }
 
-    private static void criarTabelas(Connection con) throws SQLException {
+    private static void criarTabelas(Connection con) {
+        String sqlFornecedor = """
+            CREATE TABLE IF NOT EXISTS fornecedor (
+                id_fornecedor  INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome           TEXT NOT NULL,
+                cnpj           TEXT NOT NULL,
+                telefone       TEXT NOT NULL,
+                email          TEXT NOT NULL,
+                endereco       TEXT NOT NULL
+            )
+        """;
+
         String sqlMovel = """
             CREATE TABLE IF NOT EXISTS movel (
                 id_movel      INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,28 +34,8 @@ public class Conexao {
                 largura       REAL NOT NULL,
                 comprimento   REAL NOT NULL,
                 preco         REAL NOT NULL,
-                tipo          TEXT DEFAULT 'RACK' CHECK (tipo IN ('RACK', 'CADEIRA', 'MESA')),
+                tipo          TEXT DEFAULT 'RACK' CHECK (tipo IN ('RACK', 'CADEIRA', 'MESA', 'BANCO')),
                 FOREIGN KEY (id_fornecedor) REFERENCES fornecedor (id_fornecedor) ON DELETE CASCADE ON UPDATE CASCADE
-            )
-        """;
-
-        String sqlArmario = """
-            CREATE TABLE IF NOT EXISTS armario (
-                id_armario     INTEGER PRIMARY KEY AUTOINCREMENT,
-                id_movel       INTEGER NOT NULL,
-                numero_portas  INTEGER NOT NULL,
-                FOREIGN KEY (id_movel) REFERENCES movel(id_movel) ON DELETE CASCADE
-            )
-        """;
-
-        String sqlFornecedor = """
-            CREATE TABLE IF NOT EXISTS fornecedor (
-                id_fornecedor  INTEGER PRIMARY KEY AUTOINCREMENT,
-                nome           TEXT NOT NULL,
-                cnpj           TEXT NOT NULL,
-                telefone       TEXT NOT NULL,
-                email          TEXT NOT NULL,
-                endereco       TEXT NOT NULL
             )
         """;
 
@@ -58,9 +49,10 @@ public class Conexao {
 
         try (Statement stmt = con.createStatement()) {
             stmt.executeUpdate(sqlMovel);
-            stmt.executeUpdate(sqlArmario);
             stmt.executeUpdate(sqlFornecedor);
             stmt.executeUpdate(sqlFuncionario);
+        } catch (SQLException ex) {
+            System.out.println("Erro ao criar Tabela: " + ex.getMessage());
         }
     }
 
