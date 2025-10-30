@@ -1,14 +1,13 @@
 package repositorio;
 
 import conexao.Conexao;
-import entidades.Fornecedor;
 import entidades.Funcionario;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class FuncionarioRepository {
     public static boolean inserir(Funcionario funcionario) throws SQLException {
@@ -31,5 +30,24 @@ public class FuncionarioRepository {
 
         conn.close();
         return id;
+    }
+
+    public static boolean verificarLogin(String usuario, String senha) throws SQLException {
+        Connection conn = Conexao.conectar();
+        String sql = "SELECT * FROM funcionario WHERE usuario = ? AND senha = ?";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, usuario);
+        stmt.setString(2, senha);
+
+        ResultSet rs = stmt.executeQuery();
+
+        boolean existe = rs.next();
+
+        rs.close();
+        stmt.close();
+        conn.close();
+
+        return existe;
     }
 }

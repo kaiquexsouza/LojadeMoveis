@@ -4,13 +4,21 @@ import javax.swing.text.JTextComponent;
 
 public class FormUtil {
 
-    public void cleanJTexts(JTextComponent campos){
-
+    public static void cleanJTexts(JTextComponent[] campos){
+        for (JTextComponent campo : campos) {
+            if (campo != null) {
+                campo.setText("");
+            }
+        }
     }
 
-    public boolean hasEmpty(JTextComponent campos){
-
-
-        return campos.getText().isEmpty();
+    public static boolean hasEmpty(JTextComponent[] campos){
+        for (JTextComponent campo : campos) {
+            if (campo != null && campo.getText().trim().isEmpty()) {
+                campo.requestFocus();
+                return true;
+            }
+        }
+        return false;
     }
 }
