@@ -6,7 +6,10 @@ import util.FormUtil;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
 import java.sql.SQLException;
+import java.net.URL;
+
 
 public class FrmLoginFuncionario extends JFrame {
     private JTextField ftxtUsuario;
@@ -16,18 +19,32 @@ public class FrmLoginFuncionario extends JFrame {
     private JButton btnSair;
     private JPanel jpanel;
 
-
     public FrmLoginFuncionario() {
-        this.setTitle("Login Funcionario");
+        this.setTitle("Casas Goiás");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 600);
         this.setResizable(false);
-        this.setVisible(true);
         this.setLocationRelativeTo(null);
-        ImageIcon icon = new ImageIcon("src/Images/LogoCasasGoias_128x128.png");
-        this.setIconImage(icon.getImage());
+
+        URL iconURL = getClass().getResource("/Images/LogoCasasGoias_128x128.png");
+        if (iconURL != null) {
+            Image icon = Toolkit.getDefaultToolkit().getImage(iconURL);
+            this.setIconImage(icon);
+
+            try {
+                if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+                    Taskbar.getTaskbar().setIconImage(icon);
+                }
+            } catch (Exception e) {
+                System.out.println("Não foi possível definir o ícone da Dock: " + e.getMessage());
+            }
+        } else {
+            System.err.println("Ícone não encontrado no repositório");
+        }
 
         this.add(jpanel);
+        this.setVisible(true);
+
 
         btnEntrar.addActionListener(new ActionListener() {
             @Override
