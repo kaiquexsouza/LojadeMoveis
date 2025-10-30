@@ -21,7 +21,7 @@ public class FrmPesquisaMovel extends JFrame {
     public FrmPesquisaMovel() {
         this.setTitle("Casas Goiás");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.setSize(1000, 1000);
+        this.setSize(1000, 800);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 

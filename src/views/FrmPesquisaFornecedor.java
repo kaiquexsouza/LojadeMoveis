@@ -18,7 +18,7 @@ public class FrmPesquisaFornecedor extends JFrame {
     public FrmPesquisaFornecedor() {
         this.setTitle("Casas Goiás");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.setSize(900, 900);
+        this.setSize(1000, 800);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
