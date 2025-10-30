@@ -50,4 +50,22 @@ public class FuncionarioRepository {
 
         return existe;
     }
+
+    public static boolean consultaUsuario(String usuario) throws SQLException {
+        Connection conn = Conexao.conectar();
+        String sql = "SELECT * FROM funcionario WHERE usuario = ?";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, usuario);
+
+        ResultSet rs = stmt.executeQuery();
+
+        boolean existe = rs.next();
+
+        rs.close();
+        stmt.close();
+        conn.close();
+
+        return existe;
+    }
 }

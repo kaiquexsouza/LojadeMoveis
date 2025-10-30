@@ -9,8 +9,7 @@ public class Funcionario {
 
     }
 
-    public Funcionario(int id_funcionario, String usuario, String senha) {
-        this.id_funcionario = id_funcionario;
+    public Funcionario(String usuario, String senha) {
         this.usuario = usuario;
         this.senha = senha;
     }

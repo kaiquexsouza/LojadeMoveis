@@ -17,7 +17,7 @@ public class FrmLoginFuncionario extends JFrame {
     private JButton btnEntrar;
     private JButton btnCadastrar;
     private JButton btnSair;
-    private JPanel jpanel;
+    private JPanel desktop;
 
     public FrmLoginFuncionario() {
         this.setTitle("Casas Goiás");
@@ -42,7 +42,7 @@ public class FrmLoginFuncionario extends JFrame {
             System.err.println("Ícone não encontrado no repositório");
         }
 
-        this.add(jpanel);
+        this.add(desktop);
         this.setVisible(true);
 
 
@@ -69,6 +69,9 @@ public class FrmLoginFuncionario extends JFrame {
                                 "Logado com sucesso",
                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         FormUtil.cleanJTexts(campos);
+
+                        FrmLoginFuncionario.this.dispose();
+                        new FrmPrincipal().setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(FrmLoginFuncionario.this,
                                 "Usuário ou senha incorretos",
@@ -88,11 +91,12 @@ public class FrmLoginFuncionario extends JFrame {
                 FrmLoginFuncionario.this.dispose();
             }
         });
-//        btnCadastrar.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//            }
-//        });
+        btnCadastrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmLoginFuncionario.this.dispose();
+                new FrmCadastroFuncionario().setVisible(true);
+            }
+        });
     }
 }

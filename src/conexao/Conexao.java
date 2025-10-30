@@ -16,9 +16,9 @@ public class Conexao {
             CREATE TABLE IF NOT EXISTS fornecedor (
                 id_fornecedor  INTEGER PRIMARY KEY AUTOINCREMENT,
                 nome           TEXT NOT NULL,
-                cnpj           TEXT NOT NULL,
+                cnpj           TEXT UNIQUE NOT NULL,
                 telefone       TEXT NOT NULL,
-                email          TEXT NOT NULL,
+                email          TEXT UNIQUE NOT NULL,
                 endereco       TEXT NOT NULL
             )
         """;
