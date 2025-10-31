@@ -22,6 +22,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="18" style="0"/>
+              <foreground color="-394241"/>
               <text value="Usuário"/>
             </properties>
           </component>
@@ -39,6 +40,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="18" style="0"/>
+              <foreground color="-394241"/>
               <text value="Senha"/>
             </properties>
           </component>
@@ -66,6 +68,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="18" style="0"/>
+              <foreground color="-589827"/>
               <text value="Cadastrar"/>
             </properties>
           </component>
@@ -75,6 +78,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="18" style="0"/>
+              <foreground color="-394241"/>
               <text value="Por favor, digite seu login"/>
             </properties>
           </component>
@@ -92,6 +96,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="28" style="0"/>
+              <foreground color="-394241"/>
               <text value="Login de Usuário"/>
             </properties>
           </component>

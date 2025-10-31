@@ -41,6 +41,23 @@ public class FrmPesquisaMovel extends JFrame {
             System.err.println("Ícone não encontrado no repositório");
         }
 
+        jpanel.setBackground(new Color(100, 200, 0));
+
+        txtPesquisa.setBackground(new Color(50, 50, 50));
+        txtPesquisa.setForeground(Color.WHITE);
+
+        btnPesquisar.setBackground(new Color(0, 153, 0));
+        btnPesquisar.setForeground(Color.WHITE);
+
+        btnCancelar.setBackground(new Color(255, 200, 0));
+        btnCancelar.setForeground(Color.WHITE);
+
+        tblMoveis.setBackground(Color.WHITE);
+        tblMoveis.setForeground(Color.BLACK);
+        tblMoveis.getTableHeader().setBackground(new Color(255, 204, 0));
+        tblMoveis.getTableHeader().setForeground(Color.BLACK);
+        scrolMoveis.getViewport().setBackground(Color.WHITE);
+
         this.add(jpanel);
         this.setVisible(true);
 

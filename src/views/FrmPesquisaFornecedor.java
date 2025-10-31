@@ -38,6 +38,24 @@ public class FrmPesquisaFornecedor extends JFrame {
             System.err.println("Ícone não encontrado no repositório");
         }
 
+        jpanel.setBackground(new Color(100, 200, 0));
+
+        txtPesquisa.setBackground(new Color(50, 50, 50));
+        txtPesquisa.setForeground(Color.WHITE);
+
+        btnPesquisar.setBackground(new Color(0, 153, 0));
+        btnPesquisar.setForeground(Color.WHITE);
+
+        btnCancelar.setBackground(new Color(255, 200, 0));
+        btnCancelar.setForeground(Color.WHITE);
+
+        tblFornecedores.setBackground(Color.WHITE);
+        tblFornecedores.setForeground(Color.BLACK);
+        tblFornecedores.getTableHeader().setBackground(new Color(255, 204, 0));
+        tblFornecedores.getTableHeader().setForeground(Color.BLACK);
+        scrolFornecedores.getViewport().setBackground(Color.WHITE);
+
+
         this.add(jpanel);
         this.setVisible(true);
 
@@ -55,8 +73,6 @@ public class FrmPesquisaFornecedor extends JFrame {
         tblFornecedores.getColumnModel().getColumn(2).setPreferredWidth(100);
         tblFornecedores.getColumnModel().getColumn(3).setPreferredWidth(100);
         tblFornecedores.getColumnModel().getColumn(4).setPreferredWidth(180);
-
-
 
         btnPesquisar.addActionListener(new ActionListener() {
             @Override

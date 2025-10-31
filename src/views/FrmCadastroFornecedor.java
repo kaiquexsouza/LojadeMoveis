@@ -43,14 +43,14 @@ public class FrmCadastroFornecedor extends JFrame {
         // Painel principal
         jpanel = new JPanel();
         jpanel.setLayout(null);
-        jpanel.setBackground(new Color(255, 255, 204)); // amarelo claro
+        jpanel.setBackground(new Color(100, 200, 0)); // amarelo claro
 
         // Título
         JLabel lblTitulo = new JLabel("Cadastro de Fornecedor", SwingConstants.CENTER);
         lblTitulo.setBounds(0, 20, 600, 40);
         lblTitulo.setOpaque(true);
-        lblTitulo.setBackground(new Color(0, 153, 0)); // verde principal
-        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setBackground(new Color(255, 204, 0)); // verde principal
+        lblTitulo.setForeground(Color.BLACK);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
         jpanel.add(lblTitulo);
 
@@ -58,6 +58,7 @@ public class FrmCadastroFornecedor extends JFrame {
         JLabel lblNome = new JLabel("Nome:");
         lblNome.setBounds(100, 100, 100, 25);
         jpanel.add(lblNome);
+        lblNome.setForeground(Color.WHITE);
         txtNome = new JTextField();
         txtNome.setBounds(200, 100, 300, 25);
         jpanel.add(txtNome);
@@ -65,12 +66,14 @@ public class FrmCadastroFornecedor extends JFrame {
         JLabel lblCnpj = new JLabel("CNPJ:");
         lblCnpj.setBounds(100, 140, 100, 25);
         jpanel.add(lblCnpj);
+        lblCnpj.setForeground(Color.WHITE);
         ftxtCnpj = new JFormattedTextField();
         ftxtCnpj.setBounds(200, 140, 300, 25);
         jpanel.add(ftxtCnpj);
 
         JLabel lblTelefone = new JLabel("Telefone:");
         lblTelefone.setBounds(100, 180, 100, 25);
+        lblTelefone.setForeground(Color.WHITE);
         jpanel.add(lblTelefone);
         ftxtTelefone = new JFormattedTextField();
         ftxtTelefone.setBounds(200, 180, 300, 25);
@@ -78,6 +81,7 @@ public class FrmCadastroFornecedor extends JFrame {
 
         JLabel lblEmail = new JLabel("Email:");
         lblEmail.setBounds(100, 220, 100, 25);
+        lblEmail.setForeground(Color.WHITE);
         jpanel.add(lblEmail);
         ftxtEmail = new JFormattedTextField();
         ftxtEmail.setBounds(200, 220, 300, 25);
@@ -85,6 +89,7 @@ public class FrmCadastroFornecedor extends JFrame {
 
         JLabel lblEndereco = new JLabel("Endereço:");
         lblEndereco.setBounds(100, 260, 100, 25);
+        lblEndereco.setForeground(Color.WHITE);
         jpanel.add(lblEndereco);
         ftxtEndereco = new JFormattedTextField();
         ftxtEndereco.setBounds(200, 260, 300, 25);
@@ -99,17 +104,16 @@ public class FrmCadastroFornecedor extends JFrame {
 
         btnCancelar = new JButton("Cancelar");
         btnCancelar.setBounds(320, 350, 100, 35);
-        btnCancelar.setBackground(new Color(255, 204, 0)); // amarelo
-        btnCancelar.setForeground(Color.BLACK);
+        btnCancelar.setBackground(new Color(255, 200, 0));
+        btnCancelar.setForeground(Color.WHITE);
         jpanel.add(btnCancelar);
 
         this.add(jpanel);
 
-        // Eventos
         btnSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // lógica de salvar (mantida)
+
             }
         });
 

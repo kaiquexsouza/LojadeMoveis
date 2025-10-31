@@ -42,6 +42,14 @@ public class FrmLoginFuncionario extends JFrame {
             System.err.println("Ícone não encontrado no repositório");
         }
 
+        desktop.setBackground(new Color(100, 200, 0));
+        btnEntrar.setBackground(new Color(0, 153, 0));
+        btnEntrar.setForeground(Color.WHITE);
+        btnCadastrar.setBackground(new Color(255, 200, 0));
+        btnCadastrar.setForeground(Color.WHITE);
+        btnSair.setBackground(new Color(255, 200, 0));
+        btnSair.setForeground(Color.WHITE);
+
         this.add(desktop);
         this.setVisible(true);
 
