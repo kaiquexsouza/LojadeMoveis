@@ -13,10 +13,12 @@ import java.util.List;
 
 public class MovelRepository {
     public static boolean inserir(Movel movel) throws SQLException {
+        int id = FornecedorRepository.lastId();
+
         String sql = "INSERT INTO movel (cor, descricao, material, altura, largura, comprimento, preco, tipo, id_fornecedor) " +
                 "VALUES ('" + movel.getCor() + "', '" + movel.getDescricao() + "', '" + movel.getMaterial() + "', " +
                 movel.getAltura() + ", " + movel.getLargura() + ", " + movel.getComprimento() + ", " +
-                movel.getPreco() + ", '" + movel.getTipoMovel().name() + "', " + movel.getFornecedor().getId_fornecedor() + ")";
+                movel.getPreco() + ", '" + movel.getTipoMovel().name() + "', " + id + ")";
 
         return Conexao.executarSql(sql);
     }
@@ -53,7 +55,6 @@ public class MovelRepository {
 
             while (rs.next()) {
                 Fornecedor fornecedor = new Fornecedor(
-                        rs.getInt("id_fornecedor"),
                         rs.getString("nome"),
                         rs.getString("cnpj"),
                         rs.getString("telefone"),

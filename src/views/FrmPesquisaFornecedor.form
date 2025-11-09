@@ -39,7 +39,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="18" style="0"/>
-              <text value="Tipo"/>
+              <text value="Nome"/>
             </properties>
           </component>
           <component id="b4db5" class="javax.swing.JButton" binding="btnPesquisar">

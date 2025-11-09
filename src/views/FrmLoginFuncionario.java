@@ -25,6 +25,8 @@ public class FrmLoginFuncionario extends JFrame {
         this.setSize(600, 600);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.add(desktop);
+        this.setVisible(true);
 
         URL iconURL = getClass().getResource("/Images/LogoCasasGoias_128x128.png");
         if (iconURL != null) {
@@ -44,14 +46,11 @@ public class FrmLoginFuncionario extends JFrame {
 
         desktop.setBackground(new Color(100, 200, 0));
         btnEntrar.setBackground(new Color(0, 153, 0));
-        btnEntrar.setForeground(Color.WHITE);
+        btnEntrar.setForeground(Color.BLACK);
         btnCadastrar.setBackground(new Color(255, 200, 0));
-        btnCadastrar.setForeground(Color.WHITE);
+        btnCadastrar.setForeground(Color.BLACK);
         btnSair.setBackground(new Color(255, 200, 0));
-        btnSair.setForeground(Color.WHITE);
-
-        this.add(desktop);
-        this.setVisible(true);
+        btnSair.setForeground(Color.BLACK);
 
 
         btnEntrar.addActionListener(new ActionListener() {

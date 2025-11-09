@@ -24,6 +24,8 @@ public class FrmPesquisaMovel extends JFrame {
         this.setSize(1000, 800);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.add(jpanel);
+        this.setVisible(true);
 
         URL iconURL = getClass().getResource("/Images/LogoCasasGoias_128x128.png");
         if (iconURL != null) {
@@ -41,25 +43,22 @@ public class FrmPesquisaMovel extends JFrame {
             System.err.println("Ícone não encontrado no repositório");
         }
 
-        jpanel.setBackground(new Color(100, 200, 0));
-
-        txtPesquisa.setBackground(new Color(50, 50, 50));
-        txtPesquisa.setForeground(Color.WHITE);
-
-        btnPesquisar.setBackground(new Color(0, 153, 0));
-        btnPesquisar.setForeground(Color.WHITE);
-
-        btnCancelar.setBackground(new Color(255, 200, 0));
-        btnCancelar.setForeground(Color.WHITE);
-
-        tblMoveis.setBackground(Color.WHITE);
-        tblMoveis.setForeground(Color.BLACK);
-        tblMoveis.getTableHeader().setBackground(new Color(255, 204, 0));
-        tblMoveis.getTableHeader().setForeground(Color.BLACK);
-        scrolMoveis.getViewport().setBackground(Color.WHITE);
-
-        this.add(jpanel);
-        this.setVisible(true);
+//        jpanel.setBackground(new Color(100, 200, 0));
+//
+//        txtPesquisa.setBackground(new Color(50, 50, 50));
+//        txtPesquisa.setForeground(Color.WHITE);
+//
+//        btnPesquisar.setBackground(new Color(0, 153, 0));
+//        btnPesquisar.setForeground(Color.WHITE);
+//
+//        btnCancelar.setBackground(new Color(255, 200, 0));
+//        btnCancelar.setForeground(Color.WHITE);
+//
+//        tblMoveis.setBackground(Color.WHITE);
+//        tblMoveis.setForeground(Color.BLACK);
+//        tblMoveis.getTableHeader().setBackground(new Color(255, 204, 0));
+//        tblMoveis.getTableHeader().setForeground(Color.BLACK);
+//        scrolMoveis.getViewport().setBackground(Color.WHITE);
 
         DefaultTableModel tb = new DefaultTableModel();
         tb.addColumn("Descrição");
@@ -70,6 +69,7 @@ public class FrmPesquisaMovel extends JFrame {
         tb.addColumn("Comprimento");
         tb.addColumn("Preco");
         tb.addColumn("Fornecedor");
+        tb.addColumn("Tipo");
         tblMoveis.setModel(tb);
 
         tblMoveis.getColumnModel().getColumn(0).setPreferredWidth(250);
@@ -80,6 +80,7 @@ public class FrmPesquisaMovel extends JFrame {
         tblMoveis.getColumnModel().getColumn(5).setPreferredWidth(110);
         tblMoveis.getColumnModel().getColumn(6).setPreferredWidth(90);
         tblMoveis.getColumnModel().getColumn(7).setPreferredWidth(160);
+        tblMoveis.getColumnModel().getColumn(8).setPreferredWidth(90);
 
 
 

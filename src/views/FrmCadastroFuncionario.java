@@ -26,6 +26,8 @@ public class FrmCadastroFuncionario extends JFrame {
         this.setSize(600, 600);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.add(jpanel);
+        this.setVisible(true);
 
         URL iconURL = getClass().getResource("/Images/LogoCasasGoias_128x128.png");
         if (iconURL != null) {
@@ -43,56 +45,53 @@ public class FrmCadastroFuncionario extends JFrame {
             System.err.println("Ícone não encontrado no repositório");
         }
 
-        jpanel = new JPanel();
-        jpanel.setLayout(null);
-        jpanel.setBackground(new Color(100, 200, 0));
-
-        JLabel lblTitulo = new JLabel("Cadastro de Funcionário", SwingConstants.CENTER);
-        lblTitulo.setBounds(0, 20, 600, 40);
-        lblTitulo.setOpaque(true);
-        lblTitulo.setBackground(new Color(255, 204, 0));
-        lblTitulo.setForeground(Color.BLACK);
-        lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
-        jpanel.add(lblTitulo);
-
-        JLabel lblUsuario = new JLabel("Usuário:");
-        lblUsuario.setBounds(100, 120, 100, 25);
-        lblUsuario.setForeground(Color.WHITE);
-        jpanel.add(lblUsuario);
-        ftxtUsuario = new JFormattedTextField();
-        ftxtUsuario.setBounds(200, 120, 300, 25);
-        jpanel.add(ftxtUsuario);
-
-        JLabel lblSenha = new JLabel("Senha:");
-        lblSenha.setBounds(100, 160, 100, 25);
-        lblSenha.setForeground(Color.WHITE);
-        jpanel.add(lblSenha);
-        pfSenha = new JPasswordField();
-        pfSenha.setBounds(200, 160, 300, 25);
-        jpanel.add(pfSenha);
-
-        JLabel lblConfirmaSenha = new JLabel("Confirmar Senha:");
-        lblConfirmaSenha.setBounds(100, 200, 120, 25);
-        lblConfirmaSenha.setForeground(Color.WHITE);
-        jpanel.add(lblConfirmaSenha);
-        pfConfirmaSenha = new JPasswordField();
-        pfConfirmaSenha.setBounds(200, 200, 300, 25);
-        jpanel.add(pfConfirmaSenha);
-
-        btnSalvar = new JButton("Salvar");
-        btnSalvar.setBounds(180, 300, 100, 35);
-        btnSalvar.setBackground(new Color(0, 153, 0));
-        btnSalvar.setForeground(Color.WHITE);
-        jpanel.add(btnSalvar);
-
-        btnVoltar = new JButton("Voltar");
-        btnVoltar.setBounds(320, 300, 100, 35);
-        btnVoltar.setBackground(new Color(255, 200, 0));
-        btnVoltar.setForeground(Color.WHITE);
-        jpanel.add(btnVoltar);
-
-        this.add(jpanel);
-        this.setVisible(true);
+//        jpanel = new JPanel();
+//        jpanel.setLayout(null);
+//        jpanel.setBackground(new Color(100, 200, 0));
+//
+//        JLabel lblTitulo = new JLabel("Cadastro de Funcionário", SwingConstants.CENTER);
+//        lblTitulo.setBounds(0, 20, 600, 40);
+//        lblTitulo.setOpaque(true);
+//        lblTitulo.setBackground(new Color(255, 204, 0));
+//        lblTitulo.setForeground(Color.BLACK);
+//        lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
+//        jpanel.add(lblTitulo);
+//
+//        JLabel lblUsuario = new JLabel("Usuário:");
+//        lblUsuario.setBounds(100, 120, 100, 25);
+//        lblUsuario.setForeground(Color.WHITE);
+//        jpanel.add(lblUsuario);
+//        ftxtUsuario = new JFormattedTextField();
+//        ftxtUsuario.setBounds(200, 120, 300, 25);
+//        jpanel.add(ftxtUsuario);
+//
+//        JLabel lblSenha = new JLabel("Senha:");
+//        lblSenha.setBounds(100, 160, 100, 25);
+//        lblSenha.setForeground(Color.WHITE);
+//        jpanel.add(lblSenha);
+//        pfSenha = new JPasswordField();
+//        pfSenha.setBounds(200, 160, 300, 25);
+//        jpanel.add(pfSenha);
+//
+//        JLabel lblConfirmaSenha = new JLabel("Confirmar Senha:");
+//        lblConfirmaSenha.setBounds(100, 200, 120, 25);
+//        lblConfirmaSenha.setForeground(Color.WHITE);
+//        jpanel.add(lblConfirmaSenha);
+//        pfConfirmaSenha = new JPasswordField();
+//        pfConfirmaSenha.setBounds(200, 200, 300, 25);
+//        jpanel.add(pfConfirmaSenha);
+//
+//        btnSalvar = new JButton("Salvar");
+//        btnSalvar.setBounds(180, 300, 100, 35);
+//        btnSalvar.setBackground(new Color(0, 153, 0));
+//        btnSalvar.setForeground(Color.WHITE);
+//        jpanel.add(btnSalvar);
+//
+//        btnVoltar = new JButton("Voltar");
+//        btnVoltar.setBounds(320, 300, 100, 35);
+//        btnVoltar.setBackground(new Color(255, 200, 0));
+//        btnVoltar.setForeground(Color.WHITE);
+//        jpanel.add(btnVoltar);
 
         btnVoltar.addActionListener(new ActionListener() {
             @Override

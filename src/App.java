@@ -15,6 +15,9 @@ public class App {
             System.out.println("Erro: " + e.getMessage());
         }
 
-        SwingUtilities.invokeLater(() -> new FrmLoginFuncionario());
+        SwingUtilities.invokeLater(() -> {
+            FrmLoginFuncionario loginFuncionario= new FrmLoginFuncionario();
+            loginFuncionario.setVisible(true);
+        });
     }
 }

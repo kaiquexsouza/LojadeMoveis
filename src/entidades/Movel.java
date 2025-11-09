@@ -2,7 +2,7 @@ package entidades;
 
 import entidades.enumeracao.TipoMovel;
 
-public class Movel {
+public class Movel implements RowModel {
     private int id_movel;
     private String cor;
     private String descricao;
@@ -105,5 +105,12 @@ public class Movel {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
+    }
+
+    @Override
+    public Object[] toRow() {
+        return new Object[]{
+                descricao, cor, material, altura, largura, comprimento, preco, fornecedor, tipoMovel
+        };
     }
 }

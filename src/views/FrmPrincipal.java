@@ -22,6 +22,8 @@ public class FrmPrincipal extends JFrame{
         this.setMinimumSize((new Dimension(1000, 1000)));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(true);
+        this.add(jpanel);
+        this.setVisible(true);
 
 
         URL iconURL = getClass().getResource("/Images/LogoCasasGoias_128x128.png");
@@ -40,31 +42,27 @@ public class FrmPrincipal extends JFrame{
             System.err.println("Ícone não encontrado no repositório");
         }
 
-        jpanel.setBackground(new Color(100, 200, 0));
-
-        btnPesquisaMovel.setBackground(new Color(0, 153, 0));
-        btnPesquisaMovel.setForeground(Color.WHITE);
-        btnCadastroMovel.setBackground(new Color(0, 153, 0));
-        btnCadastroMovel.setForeground(Color.WHITE);
-        btnCadastroFornecedor.setBackground(new Color(0, 153, 0));
-        btnCadastroFornecedor.setForeground(Color.WHITE);
-        btnPesquisaFornecedor.setBackground(new Color(0, 153, 0));
-        btnPesquisaFornecedor.setForeground(Color.WHITE);
-
-        URL logoURL = getClass().getResource("C:/ws-intellij/LojadeMoveis/src/Images/LogoGeralSemFundo.png");
-        if (logoURL != null) {
-            ImageIcon logoIcon = new ImageIcon(logoURL);
-            JLabel lblLogo = new JLabel(logoIcon, SwingConstants.CENTER);
-
-            lblLogo.setBounds(0, 20, 1000, logoIcon.getIconHeight());
-            jpanel.add(lblLogo);
-        } else {
-            System.err.println("Imagem da logo geral não encontrada.");
-        }
-
-
-        this.add(jpanel);
-        this.setVisible(true);
+//        jpanel.setBackground(new Color(100, 200, 0));
+//
+//        btnPesquisaMovel.setBackground(new Color(0, 153, 0));
+//        btnPesquisaMovel.setForeground(Color.WHITE);
+//        btnCadastroMovel.setBackground(new Color(0, 153, 0));
+//        btnCadastroMovel.setForeground(Color.WHITE);
+//        btnCadastroFornecedor.setBackground(new Color(0, 153, 0));
+//        btnCadastroFornecedor.setForeground(Color.WHITE);
+//        btnPesquisaFornecedor.setBackground(new Color(0, 153, 0));
+//        btnPesquisaFornecedor.setForeground(Color.WHITE);
+//
+//        URL logoURL = getClass().getResource("/Images/LogoGeralSemFundo.png");
+//        if (logoURL != null) {
+//            ImageIcon logoIcon = new ImageIcon(logoURL);
+//            JLabel lblLogo = new JLabel(logoIcon, SwingConstants.CENTER);
+//
+//            lblLogo.setBounds(0, 20, 1000, logoIcon.getIconHeight());
+//            jpanel.add(lblLogo);
+//        } else {
+//            System.err.println("Imagem da logo geral não encontrada.");
+//        }
 
 
         btnCadastroMovel.addActionListener(new ActionListener() {
