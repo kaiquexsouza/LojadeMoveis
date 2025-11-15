@@ -5,6 +5,7 @@ import repositorio.FornecedorRepository;
 import util.FormUtil;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -127,8 +128,8 @@ public class FrmCadastroFornecedor extends JFrame {
                 } else {
                     Fornecedor fornecedor = new Fornecedor();
                     fornecedor.setNome(txtNome.getText());
-                    fornecedor.setCnpj(ftxtCnpj.getText());
-                    fornecedor.setTelefone(ftxtTelefone.getText());
+                    fornecedor.setCnpj(FormUtil.limparMascara(ftxtCnpj.getText()) );
+                    fornecedor.setTelefone(FormUtil.limparMascara(ftxtTelefone.getText()) );
                     fornecedor.setEmail(ftxtEmail.getText());
                     fornecedor.setEndereco(ftxtEndereco.getText());
 
@@ -158,5 +159,27 @@ public class FrmCadastroFornecedor extends JFrame {
                 new FrmPrincipal().setVisible(true);
             }
         });
+    }
+
+    public void createUIComponents() {
+        try {
+            MaskFormatter maskCnpj = new MaskFormatter("##.###.###/####-##");
+            maskCnpj.setPlaceholderCharacter('0');
+            maskCnpj.setValueContainsLiteralCharacters(false);
+            ftxtCnpj = new JFormattedTextField(maskCnpj);
+            ftxtCnpj.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
+            MaskFormatter maskTelefone = new MaskFormatter("(##) #####-####");
+            maskTelefone.setPlaceholderCharacter('0');
+            maskTelefone.setValueContainsLiteralCharacters(false);
+            ftxtTelefone = new JFormattedTextField(maskTelefone);
+            ftxtTelefone.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
+            ftxtEmail = new JFormattedTextField();
+            ftxtEndereco = new JFormattedTextField();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

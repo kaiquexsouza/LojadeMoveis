@@ -21,4 +21,8 @@ public class FormUtil {
         }
         return false;
     }
+
+    public static String limparMascara(String s) {
+        return s.replaceAll("\\D", "");
+    }
 }
