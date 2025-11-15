@@ -22,7 +22,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="18" style="0"/>
-              <foreground color="-589827"/>
+              <foreground color="-16777216"/>
               <text value="Cadastrar"/>
             </properties>
           </component>
@@ -32,7 +32,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="18" style="0"/>
-              <foreground color="-394241"/>
+              <foreground color="-16777216"/>
               <text value="Por favor, digite seu login"/>
             </properties>
           </component>
@@ -42,7 +42,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="28" style="0"/>
-              <foreground color="-2104859"/>
+              <foreground color="-16777216"/>
               <text value="Login de Funcionario"/>
             </properties>
           </component>
@@ -78,7 +78,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="18" style="0"/>
-              <foreground color="-394241"/>
+              <foreground color="-16777216"/>
               <text value="Senha"/>
             </properties>
           </component>
@@ -98,7 +98,7 @@
             </constraints>
             <properties>
               <font name="Arial" size="18" style="0"/>
-              <foreground color="-394241"/>
+              <foreground color="-16777216"/>
               <text value="Usuário"/>
             </properties>
           </component>
