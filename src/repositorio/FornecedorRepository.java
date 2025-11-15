@@ -45,7 +45,9 @@ public class FornecedorRepository {
             substr(cnpj,6,3) || '/' || 
             substr(cnpj,9,4) || '-' || 
             substr(cnpj,13,2) AS cnpj,
-            telefone,
+            '(' || substr(telefone, 1, 2) || ') ' ||
+            substr(telefone, 3, 5) || '-' ||
+            substr(telefone, 8, 4) AS telefone,
             email,
             endereco
         FROM fornecedor
@@ -80,12 +82,14 @@ public class FornecedorRepository {
         SELECT
             id_fornecedor,
             nome,
-            substr(cnpj,1,2) || '.' || 
+            substr(cnpj,1,2) || '.' ||
             substr(cnpj,3,3) || '.' || 
             substr(cnpj,6,3) || '/' || 
             substr(cnpj,9,4) || '-' || 
             substr(cnpj,13,2) AS cnpj,
-            telefone,
+            '(' || substr(telefone, 1, 2) || ') ' ||
+            substr(telefone, 3, 5) || '-' ||
+            substr(telefone, 8, 4) AS telefone,
             email,
             endereco
         FROM fornecedor;
@@ -98,7 +102,7 @@ public class FornecedorRepository {
         while (rs.next()) {
             Fornecedor fornecedor = new Fornecedor(
                     rs.getString("nome"),
-                    rs.getString("cnpj"),     // já vem formatado (00.000.000/0000-00)
+                    rs.getString("cnpj"),
                     rs.getString("telefone"),
                     rs.getString("email"),
                     rs.getString("endereco")

@@ -42,7 +42,7 @@
               </grid>
             </constraints>
             <properties>
-              <font name="Arial" size="18" style="0"/>
+              <font name="Arial" size="18" style="2"/>
               <text value=""/>
             </properties>
           </component>
@@ -53,7 +53,7 @@
               </grid>
             </constraints>
             <properties>
-              <font name="Arial" size="18" style="0"/>
+              <font name="Arial" size="18" style="2"/>
             </properties>
           </component>
           <component id="634b" class="javax.swing.JFormattedTextField" binding="ftxtEmail">

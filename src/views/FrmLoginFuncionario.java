@@ -72,11 +72,6 @@ public class FrmLoginFuncionario extends JFrame {
                     boolean existe = FuncionarioRepository.verificarLogin(usuario, senha);
 
                     if (existe) {
-                        JOptionPane.showMessageDialog(FrmLoginFuncionario.this,
-                                "Logado com sucesso",
-                                "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                        FormUtil.cleanJTexts(campos);
-
                         FrmLoginFuncionario.this.dispose();
                         new FrmPrincipal().setVisible(true);
                     } else {

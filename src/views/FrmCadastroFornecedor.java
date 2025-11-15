@@ -3,14 +3,15 @@ package views;
 import entidades.Fornecedor;
 import repositorio.FornecedorRepository;
 import util.FormUtil;
+import util.Validador;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.net.URL;
 import java.sql.SQLException;
+
 
 public class FrmCadastroFornecedor extends JFrame {
     private JPanel jpanel;
@@ -30,6 +31,8 @@ public class FrmCadastroFornecedor extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.add(jpanel);
+        configurarSelecaoAoFocar();
+
 
         URL iconURL = getClass().getResource("/Images/LogoCasasGoias_128x128.png");
         if (iconURL != null) {
@@ -133,6 +136,10 @@ public class FrmCadastroFornecedor extends JFrame {
                     fornecedor.setEmail(ftxtEmail.getText());
                     fornecedor.setEndereco(ftxtEndereco.getText());
 
+                    if(!validarCampos(fornecedor)){
+                        return;
+                    }
+
                     try{
                         FornecedorRepository.inserir(fornecedor);
                         FormUtil.cleanJTexts(campos);
@@ -161,16 +168,36 @@ public class FrmCadastroFornecedor extends JFrame {
         });
     }
 
+    public boolean validarCampos(Fornecedor f) {
+
+        if (!Validador.validarCNPJ(f.getCnpj())) {
+            JOptionPane.showMessageDialog(null, "CNPJ inválido! Deve conter 14 dígitos.");
+            return false;
+        }
+
+        if (!Validador.validarTelefone(f.getTelefone())) {
+            JOptionPane.showMessageDialog(null, "Telefone inválido! Deve conter 11 dígitos.");
+            return false;
+        }
+
+        if (!Validador.validarEmail(f.getEmail())) {
+            JOptionPane.showMessageDialog(null, "E-mail inválido!");
+            return false;
+        }
+
+        return true;
+    }
+
     public void createUIComponents() {
         try {
             MaskFormatter maskCnpj = new MaskFormatter("##.###.###/####-##");
-            maskCnpj.setPlaceholderCharacter('0');
+            maskCnpj.setPlaceholderCharacter('_');
             maskCnpj.setValueContainsLiteralCharacters(false);
             ftxtCnpj = new JFormattedTextField(maskCnpj);
             ftxtCnpj.setFocusLostBehavior(JFormattedTextField.PERSIST);
 
             MaskFormatter maskTelefone = new MaskFormatter("(##) #####-####");
-            maskTelefone.setPlaceholderCharacter('0');
+            maskTelefone.setPlaceholderCharacter('_');
             maskTelefone.setValueContainsLiteralCharacters(false);
             ftxtTelefone = new JFormattedTextField(maskTelefone);
             ftxtTelefone.setFocusLostBehavior(JFormattedTextField.PERSIST);
@@ -181,5 +208,20 @@ public class FrmCadastroFornecedor extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void configurarSelecaoAoFocar() {
+
+        FocusListener selecionarTudo = new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    ((JFormattedTextField)e.getComponent()).selectAll();
+                });
+            }
+        };
+
+        ftxtCnpj.addFocusListener(selecionarTudo);
+        ftxtTelefone.addFocusListener(selecionarTudo);
     }
 }
