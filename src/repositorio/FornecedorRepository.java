@@ -125,23 +125,4 @@ public class FornecedorRepository {
         con.close();
         return f;
     }
-
-//    public static int idFornecedor(cnpjLimpo) throws SQLException {
-//        Connection con = Conexao.conectar();
-//        String sql = "SELECT id_fornecedor FROM fornecedor WHERE cnpj = ?";
-//
-//        PreparedStatement stmt = con.prepareStatement(sql);
-//        stmt.setString(1, cnpjLimpo);
-//
-//        ResultSet rs = stmt.executeQuery();
-//        int id = 0;
-//
-//        if (rs.next()) {
-//            id = rs.getInt("id_fornecedor");
-//        }
-//        rs.close();
-//        stmt.close();
-//        con.close();
-//        return id;
-//    }
 }

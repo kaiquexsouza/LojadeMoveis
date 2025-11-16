@@ -40,20 +40,6 @@ public class MovelRepository {
         return ok;
     }
 
-    public static int lastId() throws SQLException {
-        Connection conn = Conexao.conectar();
-        String sql = "SELECT MAX(id) AS id FROM movel";
-
-        ResultSet rs = Conexao.executarQuery(sql, conn);
-        int id = 0;
-        if (rs.next()) {
-            id = rs.getInt("id");
-        }
-
-        conn.close();
-        return id;
-    }
-
     public static List<Movel> listar(TipoMovel tipo) throws SQLException {
         List<Movel> moveis = new ArrayList<>();
         String sql = """
