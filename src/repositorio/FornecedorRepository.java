@@ -21,20 +21,6 @@ public class FornecedorRepository {
         return Conexao.executarSql(sql);
     }
 
-    public static int lastId() throws SQLException {
-        Connection conn = Conexao.conectar();
-        String sql = "SELECT MAX(id_fornecedor) AS id_fornecedor FROM fornecedor";
-
-        ResultSet rs = Conexao.executarQuery(sql, conn);
-        int id_fornecedor = 0;
-        if (rs.next()) {
-            id_fornecedor = rs.getInt("id_fornecedor");
-        }
-
-        conn.close();
-        return id_fornecedor;
-    }
-
     public static List<Fornecedor> listarPorNome(String nome) throws SQLException {
         String sql = """
         SELECT 
@@ -63,6 +49,7 @@ public class FornecedorRepository {
         List<Fornecedor> fornecedores = new ArrayList<>();
         while (rs.next()) {
             Fornecedor fornecedor = new Fornecedor(
+                    rs.getInt("id_fornecedor"),
                     rs.getString("nome"),
                     rs.getString("cnpj"),
                     rs.getString("telefone"),
@@ -83,7 +70,7 @@ public class FornecedorRepository {
             id_fornecedor,
             nome,
             substr(cnpj,1,2) || '.' ||
-            substr(cnpj,3,3) || '.' || 
+            substr(cnpj,3,3) || '.' ||
             substr(cnpj,6,3) || '/' || 
             substr(cnpj,9,4) || '-' || 
             substr(cnpj,13,2) AS cnpj,
@@ -101,6 +88,7 @@ public class FornecedorRepository {
         List<Fornecedor> fornecedores = new ArrayList<>();
         while (rs.next()) {
             Fornecedor fornecedor = new Fornecedor(
+                    rs.getInt("id_fornecedor"),
                     rs.getString("nome"),
                     rs.getString("cnpj"),
                     rs.getString("telefone"),
@@ -113,4 +101,47 @@ public class FornecedorRepository {
         con.close();
         return fornecedores;
     }
+
+    public static Fornecedor buscarPorCnpj(String cnpj) throws SQLException {
+        String sql = "SELECT * FROM fornecedor WHERE cnpj = ?";
+        Connection con = Conexao.conectar();
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, cnpj);
+
+        ResultSet rs = stmt.executeQuery();
+        Fornecedor f = null;
+
+        if (rs.next()) {
+            f = new Fornecedor(
+                    rs.getInt("id_fornecedor"),
+                    rs.getString("nome"),
+                    rs.getString("cnpj"),
+                    rs.getString("telefone"),
+                    rs.getString("email"),
+                    rs.getString("endereco")
+            );
+        }
+
+        con.close();
+        return f;
+    }
+
+//    public static int idFornecedor(cnpjLimpo) throws SQLException {
+//        Connection con = Conexao.conectar();
+//        String sql = "SELECT id_fornecedor FROM fornecedor WHERE cnpj = ?";
+//
+//        PreparedStatement stmt = con.prepareStatement(sql);
+//        stmt.setString(1, cnpjLimpo);
+//
+//        ResultSet rs = stmt.executeQuery();
+//        int id = 0;
+//
+//        if (rs.next()) {
+//            id = rs.getInt("id_fornecedor");
+//        }
+//        rs.close();
+//        stmt.close();
+//        con.close();
+//        return id;
+//    }
 }

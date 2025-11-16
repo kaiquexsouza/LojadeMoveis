@@ -6,6 +6,7 @@ import entidades.Movel;
 import entidades.enumeracao.TipoMovel;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,14 +14,30 @@ import java.util.List;
 
 public class MovelRepository {
     public static boolean inserir(Movel movel) throws SQLException {
-        int id = FornecedorRepository.lastId();
+        String sql = """
+        INSERT INTO movel 
+        (id_fornecedor, cor, descricao, material, altura, largura, comprimento, preco, tipo)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """;
 
-        String sql = "INSERT INTO movel (cor, descricao, material, altura, largura, comprimento, preco, tipo, id_fornecedor) " +
-                "VALUES ('" + movel.getCor() + "', '" + movel.getDescricao() + "', '" + movel.getMaterial() + "', " +
-                movel.getAltura() + ", " + movel.getLargura() + ", " + movel.getComprimento() + ", " +
-                movel.getPreco() + ", '" + movel.getTipoMovel().name() + "', " + id + ")";
+        Connection con = Conexao.conectar();
+        PreparedStatement stmt = con.prepareStatement(sql);
 
-        return Conexao.executarSql(sql);
+        stmt.setInt(1, movel.getFornecedor().getId_fornecedor());
+        stmt.setString(2, movel.getCor());
+        stmt.setString(3, movel.getDescricao());
+        stmt.setString(4, movel.getMaterial());
+        stmt.setFloat(5, movel.getAltura());
+        stmt.setFloat(6, movel.getLargura());
+        stmt.setFloat(7, movel.getComprimento());
+        stmt.setFloat(8, movel.getPreco());
+        stmt.setString(9, movel.getTipoMovel().name());
+
+        boolean ok = stmt.executeUpdate() > 0;
+
+        stmt.close();
+        con.close();
+        return ok;
     }
 
     public static int lastId() throws SQLException {
@@ -55,6 +72,7 @@ public class MovelRepository {
 
             while (rs.next()) {
                 Fornecedor fornecedor = new Fornecedor(
+                        rs.getInt("id_fornecedor"),
                         rs.getString("nome"),
                         rs.getString("cnpj"),
                         rs.getString("telefone"),

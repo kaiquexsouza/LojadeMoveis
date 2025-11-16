@@ -21,7 +21,7 @@
               <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Arial" size="28" style="0"/>
+              <font name="Arial" size="35" style="0"/>
               <text value="Pesquisar Fornecedor"/>
             </properties>
           </component>
@@ -31,7 +31,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <font name="Arial" size="18" style="0"/>
+            </properties>
           </component>
           <component id="baadf" class="javax.swing.JLabel">
             <constraints>
@@ -55,12 +57,16 @@
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <font name="Arial" size="18" style="0"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="e4102" class="javax.swing.JTable" binding="tblFornecedores">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <font name="Arial" size="12"/>
+                </properties>
               </component>
             </children>
           </scrollpane>

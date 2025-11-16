@@ -131,7 +131,7 @@ public class FrmCadastroFornecedor extends JFrame {
                 } else {
                     Fornecedor fornecedor = new Fornecedor();
                     fornecedor.setNome(txtNome.getText());
-                    fornecedor.setCnpj(FormUtil.limparMascara(ftxtCnpj.getText()) );
+                    fornecedor.setCnpj(FormUtil.limparMascara(ftxtCnpj.getText()));
                     fornecedor.setTelefone(FormUtil.limparMascara(ftxtTelefone.getText()) );
                     fornecedor.setEmail(ftxtEmail.getText());
                     fornecedor.setEndereco(ftxtEndereco.getText());
@@ -211,7 +211,6 @@ public class FrmCadastroFornecedor extends JFrame {
     }
 
     private void configurarSelecaoAoFocar() {
-
         FocusListener selecionarTudo = new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
